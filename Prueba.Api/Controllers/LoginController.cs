@@ -1,13 +1,14 @@
 ﻿
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Prueba.Core.DTOs;
 using Prueba.Core.Interfaces;
 using Prueba.Core.Responses;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace PruebaWebApi.Controllers
 {
+    
     [Route("api/[controller]")]
     [ApiController]
     public class LoginController : Controller
@@ -17,15 +18,16 @@ namespace PruebaWebApi.Controllers
         public LoginController(ILoginServices _loginServices)
         {
             loginServices = _loginServices;
-        }        
+        }
 
         /// <summary>
         /// Servicio para hacer login de usuario
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
+        
         [HttpPost]
-        [Route(nameof(LoginController.Login))]
+        [Route(nameof(LoginController.Login))]        
         public async Task<IActionResult> Login(UserDto request)
         {
             return await Task.Run(() =>
@@ -41,8 +43,9 @@ namespace PruebaWebApi.Controllers
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
+        
         [HttpPost]
-        [Route(nameof(LoginController.CreateUser))]
+        [Route(nameof(LoginController.CreateUser))]        
         public async Task<IActionResult> CreateUser(UserDto request)
         {
             return await Task.Run(() =>

@@ -29,6 +29,14 @@ namespace Prueba.infraestructure.Access
             return Result;
         }
 
+        public string CreateRange(List<ProductsDto> request)
+        {
+            var products = mapper.Map<List<Products>>(request);
+            context.Products.AddRange(products);
+            context.SaveChanges();            
+            return "Created";
+        }
+
         public ProductsDto EditProducts(ProductsDto request)
         {
 

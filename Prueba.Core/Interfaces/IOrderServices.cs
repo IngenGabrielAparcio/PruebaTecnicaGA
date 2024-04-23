@@ -12,6 +12,8 @@ namespace Prueba.Core.Interfaces
 
         public ResponseQuery<OrderDto> CreateOrder(OrderDto request, ResponseQuery<OrderDto> response);
 
+        public ResponseQuery<OrderDto> CreateOrderProducts(OrderProductsDto request, ResponseQuery<OrderDto> response);
+
         public ResponseQuery<OrderDto> SendMail(OrderDto request, ResponseQuery<OrderDto> response);
 
         public ResponseQuery<OrderDto> SendMailById(int id, ResponseQuery<OrderDto> response);

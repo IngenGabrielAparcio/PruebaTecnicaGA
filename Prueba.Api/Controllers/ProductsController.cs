@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Prueba.Core.DTOs;
 using Prueba.Core.Interfaces;
@@ -9,6 +10,7 @@ namespace PruebaWebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ProductsController : Controller
     {
         readonly IProductsServices productsServices;
@@ -25,6 +27,7 @@ namespace PruebaWebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route(nameof(ProductsController.CreateProducts))]
+        [Authorize(Roles = "User, Admin")]
         public async Task<IActionResult> CreateProducts(ProductsDto request)
         {
             return await Task.Run(() =>
@@ -42,6 +45,7 @@ namespace PruebaWebApi.Controllers
         /// <returns></returns>
         [HttpPut]
         [Route(nameof(ProductsController.UpdateProducts))]
+        [Authorize(Roles = "User, Admin")]
         public async Task<IActionResult> UpdateProducts(ProductsDto request)
         {
             return await Task.Run(() =>
@@ -59,6 +63,7 @@ namespace PruebaWebApi.Controllers
         /// <returns></returns>
         [HttpDelete]
         [Route(nameof(ProductsController.DeleteProducts))]
+        [Authorize(Roles = "User, Admin")]
         public async Task<IActionResult> DeleteProducts(int id)
         {
             return await Task.Run(() =>

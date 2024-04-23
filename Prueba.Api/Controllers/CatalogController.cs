@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Prueba.Core.DTOs;
 using Prueba.Core.Interfaces;
 using Prueba.Core.Responses;
@@ -7,8 +8,10 @@ using System.Threading.Tasks;
 
 namespace PruebaWebApi.Controllers
 {
+    
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CatalogController : Controller
     {
         readonly ICatalogServices catalogServices;
@@ -21,9 +24,10 @@ namespace PruebaWebApi.Controllers
         /// Servicio que consulta el producto/alimento del catálogo por Id
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
+        /// <returns></returns>        
         [HttpGet]
         [Route(nameof(CatalogController.GetCatalog))]
+        [Authorize(Roles = "User, Admin")]
         public async Task<ResponseQuery<CatalogDto>> GetCatalog(int id)
         {
             return await Task.Run(() =>
@@ -37,9 +41,10 @@ namespace PruebaWebApi.Controllers
         /// <summary>
         /// Servicio que obtiene el listado de productos en el catálogo
         /// </summary>
-        /// <returns></returns>
+        /// <returns></returns>        
         [HttpGet]
         [Route(nameof(CatalogController.GetListCatalog))]
+        [Authorize(Roles = "User, Admin")]
         public async Task<IActionResult> GetListCatalog()
         {
             return await Task.Run(() =>
@@ -58,6 +63,7 @@ namespace PruebaWebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route(nameof(CatalogController.CreateCatalog))]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> CreateCatalog(CatalogDto request)
         {
             return await Task.Run(() =>
@@ -75,6 +81,7 @@ namespace PruebaWebApi.Controllers
         /// <returns></returns>
         [HttpPut]
         [Route(nameof(CatalogController.UpdateCatalog))]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateCatalog(CatalogDto request)
         {
             return await Task.Run(() =>
@@ -92,6 +99,7 @@ namespace PruebaWebApi.Controllers
         /// <returns></returns>
         [HttpDelete]
         [Route(nameof(CatalogController.DeleteCatalog))]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteCatalog(int id)
         {
             return await Task.Run(() =>

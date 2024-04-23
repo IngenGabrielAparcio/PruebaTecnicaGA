@@ -24,10 +24,10 @@ namespace Prueba.infraestructure.Access
             mapper = _mapper;
         }
 
-        public UserDto Login(string userStore, string pass)
+        public UserDto Login(string email, string pass)
         {
             Users login = new Users();
-            login = context.Users.FirstOrDefault(x => x.UserStore == userStore && x.Pass == pass);            
+            login = context.Users.FirstOrDefault(x => x.Email == email && x.Pass == pass);            
             return mapper.Map<UserDto>(login);
 
         }

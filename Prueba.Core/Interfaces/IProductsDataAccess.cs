@@ -12,6 +12,8 @@ namespace Prueba.Core.Interfaces
 
         public ProductsDto CreateProducts(ProductsDto request);
 
+        public string CreateRange(List<ProductsDto> request);
+
         public ProductsDto EditProducts(ProductsDto request);
 
         public ProductsDto DeleteProducts(int id);

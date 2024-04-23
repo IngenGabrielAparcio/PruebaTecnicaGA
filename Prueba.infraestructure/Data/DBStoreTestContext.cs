@@ -74,7 +74,15 @@ namespace Prueba.infraestructure.Data
 
             modelBuilder.Entity<Users>(entity =>
             {
+                entity.Property(e => e.Email)
+                    .HasMaxLength(256)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Pass)
+                    .HasMaxLength(256)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Role)
                     .HasMaxLength(256)
                     .IsUnicode(false);
 
