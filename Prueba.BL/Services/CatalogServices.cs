@@ -72,7 +72,15 @@ namespace Prueba.BL.Services
         {
             try
             {
+                if (request.Quantity <= 0)
+                {
+                    response.Result = new CatalogDto();
+                    response.Mensaje = "Cannot create a product with a quantity of 0 or negative";
+                    response.Exitosos = false;
+                    return response;
+                }
                 var catalogtemp = getCatalogByName(request.Name);
+                
                 if (catalogtemp != null)
                 {
                     request.Quantity = request.Quantity + catalogtemp.Quantity;
@@ -101,6 +109,14 @@ namespace Prueba.BL.Services
         {
             try
             {
+                if (request.Quantity <= 0)
+                {
+                    response.Result = new CatalogDto();
+                    response.Mensaje = "Cannot update a product with a quantity of 0 or negative";
+                    response.Exitosos = false;
+                    return response;
+                }
+
                 response.Result = catalogDataAccess.UpdateCatalog(request);
                 if (response.Result != null)
                 {
