@@ -1,7 +1,6 @@
 ﻿using Prueba.Core.DTOs;
 using Prueba.Core.Interfaces;
 using Prueba.Core.Responses;
-using Prueba.infraestructure.Access;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -160,7 +159,7 @@ namespace Prueba.BL.Services
                 
             try
             {
-                var userResult = SearchUser(request);
+                var userResult = SearchUser(request);                                
                 MailMessage message = new MailMessage();
                 string from = "PruebaTecnicaGA@outlook.es";
                 string smtpCliente = "smtp-mail.outlook.com";
@@ -283,6 +282,7 @@ namespace Prueba.BL.Services
             }
             return flag;
         }
+
     }
     
 }
